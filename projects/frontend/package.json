@@ -1,0 +1,50 @@
+{
+  "private": true,
+  "name": "frontend",
+  "version": "0.0.1",
+  "scripts": {
+    "build": "craco build",
+    "eject": "react-scripts eject",
+    "start": "BROWSER=none craco start",
+    "test": "craco test --watchAll=false",
+    "test:watch": "craco test"
+  },
+  "dependencies": {
+    "@craco/craco": "6.1.1",
+    "@tailwindcss/forms": "0.3.2",
+    "@tailwindcss/postcss7-compat": "2.1.0",
+    "@testing-library/jest-dom": "5.11.10",
+    "@testing-library/react": "11.2.6",
+    "@testing-library/user-event": "13.1.2",
+    "autoprefixer": "9.8.6",
+    "postcss": "7.0.35",
+    "qs": "6.10.1",
+    "react": "17.0.2",
+    "react-dom": "17.0.2",
+    "react-error-boundary": "3.1.1",
+    "react-icons": "4.2.0",
+    "react-query": "3.13.6",
+    "react-router-dom": "5.2.0",
+    "react-scripts": "4.0.3",
+    "tailwindcss": "npm:@tailwindcss/postcss7-compat@2.1.0",
+    "unstated-next": "1.1.0"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  }
+}

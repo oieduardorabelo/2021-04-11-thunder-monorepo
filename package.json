@@ -1,0 +1,33 @@
+{
+  "private": true,
+  "name": "monorepo",
+  "version": "0.0.1",
+  "workspaces": [
+    "./projects/*"
+  ],
+  "scripts": {
+    "format:code": "prettier --write './**/*.{js,yaml}'",
+    "format:package-json": "prettier-package-json --write './**/package.json'"
+  },
+  "devDependencies": {
+    "husky": "6.0.0",
+    "lint-staged": "10.5.4",
+    "npm-run-all": "4.1.5",
+    "prettier": "2.2.1",
+    "prettier-package-json": "2.1.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write",
+    "package.json": "prettier-package-json --write"
+  },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5",
+    "arrowParens": "always"
+  }
+}

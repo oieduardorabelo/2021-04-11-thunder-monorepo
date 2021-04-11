@@ -1,0 +1,98 @@
+openapi: 3.0.1
+info:
+  title: Thunder API with Swagger
+  version: 0.0.1
+  description: Application made with Express and documented with Swagger
+  license:
+    name: MIT
+    url: https://spdx.org/licenses/MIT.html
+  contact:
+    name: oieduardorabelo
+    url: https://github.com/oieduardorabelo
+servers:
+  - url: '{host}{port}{basePath}'
+    variables:
+      host:
+        default: 'http://localhost:'
+      port:
+        enum: [3000, 5000, null]
+        default: 3000
+      basePath:
+        default: /v1
+components:
+  schemas:
+    People:
+      type: object
+      required: [name, age, gender, _id]
+      properties:
+        name:
+          type: string
+        age:
+          type: integer
+        gender:
+          type: string
+          enum: [male, female]
+        _id:
+          type: string
+    ErrorGeneral:
+      type: object
+      required: [message, code]
+      properties:
+        message:
+          type: string
+        code:
+          type: integer
+          minimum: 100
+          maximum: 600
+paths:
+  /people:
+    get:
+      description: Returns all registered people
+      responses:
+        200:
+          description: A list of people
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    default: true
+                  payload:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/People'
+        default:
+          description: A general error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                    default: false
+                  payload:
+                    $ref: '#/components/schemas/ErrorGeneral'
+      parameters:
+        - in: query
+          name: gender
+          schema:
+            type: string
+            enum:
+              - male
+              - female
+        - in: query
+          name: op
+          schema:
+            type: string
+            enum:
+              - lt
+              - gte
+          description: The operation to be performed
+        - in: query
+          name: age
+          schema:
+            type: integer
+          description: A persons age
