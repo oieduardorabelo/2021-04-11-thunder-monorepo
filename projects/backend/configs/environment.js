@@ -1,8 +1,8 @@
-let { PORT = 5000 } = process.env;
+let { PORT, CORS_ORIGIN_LIST } = process.env;
 
 let environment = {
   port: Number(PORT),
-  corsOriginList: 'http://localhost:3000',
+  corsOriginList: CORS_ORIGIN_LIST,
 };
 
 module.exports = {

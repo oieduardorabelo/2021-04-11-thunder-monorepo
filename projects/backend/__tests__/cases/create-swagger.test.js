@@ -1,10 +1,13 @@
 let supertest = require('supertest');
 
+let { environment } = require('../../configs/environment');
+
+
 let { createServer } = require('../../applications/create-server');
 let { createSwagger } = require('../../applications/create-swagger');
 
 test('it creates swagger docs endpoint', async () => {
-  let ports = {};
+  let ports = { environment };
   let { server } = createSwagger(createServer(ports));
   let req = await supertest(server).get('/docs');
   expect(req.status).toBe(301);
