@@ -11,17 +11,20 @@ export function useSyncSearchParams() {
     age: query.get('age') ?? '24',
     op: query.get('op') ?? 'gte',
   });
+
   React.useEffect(() => {
     let currQuery = new URLSearchParams(location.search);
     let sameGender = params.gender === currQuery.get('gender');
     let sameAge = params.age === currQuery.get('age');
     let sameOp = params.op === currQuery.get('op');
-    if ([sameGender, sameAge, sameOp].indexOf(false) !== -1) {
+    let isAllTheSame = [sameGender, sameAge, sameOp].every(opt => opt === true);
+    if (isAllTheSame === true) {
       let nextSearch = qs.stringify(params);
       history.push({
         search: nextSearch,
       });
     }
   }, [history, location, params]);
+
   return { params, setParams };
 }

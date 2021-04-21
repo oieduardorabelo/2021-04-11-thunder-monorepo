@@ -7,7 +7,7 @@ import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import './index.css';
 
 import { PageHome } from './pages/PageHome';
-import { Services } from './contexts/Services';
+import * as Services from './contexts/Services';
 
 let queryClient = new QueryClient({
   defaultOptions: {
@@ -31,8 +31,8 @@ ReactDOM.render(
               <Redirect to="/" />
             </Route>
           </Switch>
+          <ReactQueryDevtools initialIsOpen={false} />
         </BrowserRouter>
-        <ReactQueryDevtools initialIsOpen={false} />
       </Services.Provider>
     </QueryClientProvider>
   </React.StrictMode>,

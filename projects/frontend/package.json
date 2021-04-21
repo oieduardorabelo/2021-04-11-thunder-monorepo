@@ -46,5 +46,11 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "devDependencies": {
+    "@types/qs": "6.9.6",
+    "@types/react": "17.0.3",
+    "@types/react-dom": "17.0.3",
+    "@types/react-router-dom": "5.1.7"
   }
 }

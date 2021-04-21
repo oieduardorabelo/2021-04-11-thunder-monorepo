@@ -2,13 +2,23 @@ import * as React from 'react';
 import { CgSmileSad } from 'react-icons/cg';
 import { useQuery } from 'react-query';
 
-import { Services } from '../contexts/Services';
+import * as Services from '../contexts/Services';
 
-export function PeopleList(props) {
+type PropsPeopleList = {
+  querystring: string
+}
+export function PeopleList(props: PropsPeopleList) {
   let services = Services.useContainer();
   let { data } = useQuery(props.querystring, () =>
     services.getPeople(props.querystring)
   );
+
+  // Type Guard for TypeScript only; Because we are
+  // using  React.Suspense for Promise states
+  if (!data) {
+    return null;
+  }
+
   if (data.payload.length === 0) {
     return (
       <div className="bg-blue-100 rounded-lg w-full p-4 flex justify-center items-center text-2xl md:text-3xl md:w-2/4">

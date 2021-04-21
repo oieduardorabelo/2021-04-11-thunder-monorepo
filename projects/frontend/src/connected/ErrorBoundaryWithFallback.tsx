@@ -1,7 +1,11 @@
 import { ErrorBoundary } from 'react-error-boundary';
 import { useQueryErrorResetBoundary } from 'react-query';
 
-let ErrorFallback = (props) => {
+type PropsErrorFallback = {
+  onDismiss: (...args: unknown[]) => void;
+  children: React.ReactNode;
+}
+let ErrorFallback = (props: PropsErrorFallback) => {
   return (
     <div className="rounded-md bg-red-50 p-4 mx-8">
       <div className="flex">
@@ -26,7 +30,10 @@ let ErrorFallback = (props) => {
   );
 };
 
-let ErrorBoundaryWithFallback = (props) => {
+type PropsErrorBoundaryWithFallback = {
+  children: React.ReactNode;
+}
+let ErrorBoundaryWithFallback = (props: PropsErrorBoundaryWithFallback) => {
   const { reset } = useQueryErrorResetBoundary();
 
   return (

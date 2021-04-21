@@ -5,24 +5,25 @@ import { useSyncSearchParams } from '../hooks/useSyncUrlSearchFormParams';
 
 import { PeopleList } from '../connected/PeopleList';
 
-import { ErrorBoundaryWithFallback } from '../components/ErrorBoundaryWithFallback';
+import { ErrorBoundaryWithFallback } from '../connected/ErrorBoundaryWithFallback';
 import { Loading } from '../components/Loading';
 import { SearchForm } from '../components/SearchForm';
 
 export function PageHome() {
   let { params, setParams } = useSyncSearchParams();
+  let querystring = React.useMemo(() => qs.stringify(params), [params]);
 
-  function onSubmit(event) {
+  let onSubmit = React.useCallback((event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    let inputGender = event.target.elements['filter.gender'];
-    let inputAge = event.target.elements['filter.age'];
-    let inputOp = event.target.elements['filter.op'];
+    let inputGender = event.currentTarget.elements.namedItem('filter.gender') as HTMLInputElement;
+    let inputAge = event.currentTarget.elements.namedItem('filter.age') as HTMLInputElement;
+    let inputOp = event.currentTarget.elements.namedItem('filter.op') as HTMLInputElement;
     setParams(() => ({
       gender: inputGender.value,
       age: inputAge.value,
       op: inputOp.value,
     }));
-  }
+  }, [setParams]);
 
   return (
     <main className="p-4 flex flex-col items-center max-w-screen-lg m-auto">
@@ -34,7 +35,7 @@ export function PageHome() {
       </div>
       <ErrorBoundaryWithFallback>
         <React.Suspense fallback={<Loading>Loading People List...</Loading>}>
-          <PeopleList querystring={qs.stringify(params)} />
+          <PeopleList querystring={querystring} />
         </React.Suspense>
       </ErrorBoundaryWithFallback>
     </main>

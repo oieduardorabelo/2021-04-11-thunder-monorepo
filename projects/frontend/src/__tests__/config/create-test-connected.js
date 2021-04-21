@@ -3,7 +3,7 @@ import * as ReactQuery from 'react-query';
 
 import { createTest } from './create-test';
 
-import { Services } from '../../contexts/Services';
+import * as Services from '../../contexts/Services';
 
 ReactQuery.setLogger({
   error() {},

@@ -1,4 +1,12 @@
-export function SearchForm(props) {
+type PropsSearchForm = {
+  onSubmit: React.FormEventHandler<HTMLFormElement>;
+  state: {
+    gender: string;
+    age: string;
+    op: string;
+  }
+}
+export function SearchForm(props: PropsSearchForm) {
   return (
     <form onSubmit={props.onSubmit} className="w-full">
       <ul className="grid gap-2 md:grid-cols-2 md:gap-4">
