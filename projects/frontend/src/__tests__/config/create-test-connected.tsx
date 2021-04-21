@@ -11,7 +11,7 @@ ReactQuery.setLogger({
   warn() {},
 });
 
-export function createTestConnected(children, fromTestServices) {
+export function createTestConnected(children: React.ReactElement, fromTestServices: {}) {
   let queryClient = new ReactQuery.QueryClient({
     defaultOptions: {
       queries: {

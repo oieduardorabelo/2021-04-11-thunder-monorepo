@@ -9,7 +9,7 @@ type TPerson = {
   age: string;
 }
 let initialServices = {
-  getPeople: (searchParams: string): Promise<{ payload: TPerson[] }> =>
+  getPeople: (searchParams: string): Promise<{ payload: TPerson[] } | void> =>
     fetch(`${REACT_APP_API_URL}/people?${searchParams}`).then((res) =>
       res.json()
     )

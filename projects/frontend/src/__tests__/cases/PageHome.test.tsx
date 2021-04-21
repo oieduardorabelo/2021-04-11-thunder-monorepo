@@ -3,7 +3,7 @@ import { PageHome } from '../../pages/PageHome';
 
 test('when search form is submitted fetch new people list', async () => {
   let services = {
-    async getPeople(querystring) {
+    async getPeople(querystring: string) {
       if (querystring.includes('female')) {
         return { payload: [] };
       }
@@ -24,7 +24,8 @@ test('when search form is submitted fetch new people list', async () => {
 
   expect(screen.getByText('No match found')).toBeInTheDocument();
 
-  fireEvent.change(screen.container.querySelector('[id="filter.gender"]'), {
+  let input = screen.container.querySelector('[id="filter.gender"]') as Element;
+  fireEvent.change(input, {
     target: { value: 'male' },
   });
   fireEvent.click(screen.getByText('Search People'));

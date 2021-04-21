@@ -4,7 +4,11 @@ import { SearchForm } from '../../components/SearchForm';
 test('it renders correctly', () => {
   let props = {
     onSubmit: jest.fn(),
-    state: {},
+    state: {
+      gender: "",
+      age: "",
+      op: "",
+    },
   };
   let { screen } = createTest(<SearchForm {...props} />);
   expect(screen.container.querySelector('form')).toBeInTheDocument();
@@ -20,7 +24,11 @@ test('on submit calls prop correctly', () => {
   let onSubmit = jest.fn();
   let props = {
     onSubmit,
-    state: {},
+    state: {
+      gender: "",
+      age: "",
+      op: "",
+    },
   };
   let { screen, fireEvent } = createTest(<SearchForm {...props} />);
   fireEvent(

@@ -8,7 +8,7 @@ module.exports = {
     configure: (jestConfig) => {
       jestConfig.testMatch = ['<rootDir>/src/__tests__/cases/**/*'];
       jestConfig.setupFilesAfterEnv = [
-        '<rootDir>/src/__tests__/config/setup-files-after-env.js',
+        '<rootDir>/src/__tests__/config/setup-files-after-env.tsx',
       ];
       return jestConfig;
     },
